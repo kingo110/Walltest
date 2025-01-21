@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wallpaper App</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #2c3e50;
+            color: #ecf0f1;
+        }
+        .wallpaper-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+        .wallpaper-grid img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <h1>Wallpaper App</h1>
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <input type="text" id="search-bar" class="form-control" placeholder="Search wallpapers...">
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#categories-modal">Categories</button>
+        </div>
+        <div class="wallpaper-grid" id="wallpaper-grid">
+            <img src="https://picsum.photos/200/300" alt="Wallpaper 1">
+            <img src="https://picsum.photos/200/301" alt="Wallpaper 2">
+            <img src="https://picsum.photos/200/302" alt="Wallpaper 3">
+            <img src="https://picsum.photos/200/303" alt="Wallpaper 4">
+            <img src="https://picsum.photos/200/304" alt="Wallpaper 5">
+            <img src="https://picsum.photos/200/305" alt="Wallpaper 6">
+            <img src="https://picsum.photos/200/306" alt="Wallpaper 7">
+            <img src="https://picsum.photos/200/307" alt="Wallpaper 8">
+        </div>
+    </div>
+
+    <div class="modal fade" id="categories-modal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Categories</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <ul>
+                        <li>Category 1</li>
+                        <li>Category 2</li>
+                        <li>Category 3</li>
+                    </ul>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        const searchbar = document.getElementById('search-bar');
+        const wallpaperGrid = document.getElementById('wallpaper-grid');
+
+        searchbar.addEventListener('input', () => {
+            const searchValue = searchbar.value.toLowerCase();
+            const wallpapers = wallpaperGrid.children;
+
+            for (const wallpaper of wallpapers) {
+                if (wallpaper.alt.toLowerCase().includes(searchValue)) {
+                    wallpaper.style.display = 'block';
+                } else {
+                    wallpaper.style.display = 'none';
+                }
+            }
+        });
+    </script>
+</body>
+</html>
